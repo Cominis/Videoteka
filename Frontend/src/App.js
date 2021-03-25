@@ -1,10 +1,29 @@
-import {Typography} from "@material-ui/core";
+import { Button, MuiThemeProvider } from "@material-ui/core";
+import VideoContainer from "./Video";
+import theme from "./theme";
 
 function App() {
+    const videoPlayerOptions = (src, type) => ({
+        autoplay: false,
+        playbackRates: [0.25, 0.5, 1, 1.5, 2],
+        width: 768,
+        height: 432,
+        controls: true,
+        sources: [
+            {
+                src,
+                type,
+            },
+        ],
+    });
+
     return (
-        <div className="App">
-            <Typography variant="h1">Temp</Typography>
-        </div>
+        <MuiThemeProvider theme={theme}>
+            <div className="App">
+                <VideoContainer playerOptions={videoPlayerOptions('videoteka-video.mp4', 'video/mp4')}/>
+                <Button variant="contained" color="primary">Share</Button>
+            </div>
+        </MuiThemeProvider>
     );
 }
 

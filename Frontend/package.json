@@ -63,6 +63,7 @@
     "terser-webpack-plugin": "4.2.3",
     "ts-pnp": "1.2.0",
     "url-loader": "4.1.1",
+    "video.js": "^7.11.4",
     "web-vitals": "^1.1.1",
     "webpack": "4.44.2",
     "webpack-dev-server": "3.11.1",
@@ -111,7 +112,7 @@
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
     "testEnvironment": "jsdom",
-    "testRunner": "C:\\Users\\Dilanas\\Desktop\\videoteka\\node_modules\\jest-circus\\runner.js",
+    "testRunner": "<rootDir>/node_modules/jest-circus/runner",
     "transform": {
       "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
