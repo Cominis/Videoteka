@@ -13,13 +13,21 @@ namespace Videoteka.API
         {
             Configuration = configuration;
         }
-
+        
+        private const string CorsNameAll = "All";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsNameAll, builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Videoteka.API", Version = "v1"});
@@ -37,6 +45,8 @@ namespace Videoteka.API
             }
 
             app.UseHttpsRedirection();
+            
+            app.UseCors(CorsNameAll);
 
             app.UseRouting();
 
