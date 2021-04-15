@@ -1,9 +1,20 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Videoteka.API.Data;
+using Videoteka.API.Data.Request;
+using Videoteka.API.Repository;
+using Videoteka.API.Repository.Contracts;
+using Videoteka.API.Service;
+using Videoteka.API.Service.Contracts;
+using Videoteka.API.Service.Validator;
 
 namespace Videoteka.API
 {
@@ -20,7 +31,15 @@ namespace Videoteka.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddDbContext<VideotekaDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("VideotekaDbConnection")));
+            services.AddMediatR(typeof(Startup));
+            services.AddScoped<IVideoRepository, VideoRepository>();
+            services.AddScoped<IFileService, FileService>();
+            services
+                .AddControllers()
+                .AddFluentValidation();
+            services.AddTransient<IValidator<UploadVideoRequest>, UploadVideoValidator>();
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsNameAll, builder => builder

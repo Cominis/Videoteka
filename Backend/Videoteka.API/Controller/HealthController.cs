@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Videoteka.API.Controllers
+namespace Videoteka.API.Controller
 {
     [ApiController]
     [Route("[controller]")]
