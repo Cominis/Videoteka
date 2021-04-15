@@ -7,8 +7,9 @@
   &__Sidebar{  
     height: 100%; // kol kas viskas scalable, reiks gal veliau pridet kokiu min-width max-height ar pns 
     width: 20%;    
-    //border: 1px solid aqua; 
-    background-color: rgb(0, 255, 255); 
+    //box-sizing: border-box; 
+    //border: 2px solid aqua;      
+    background-color: rgb(100, 100, 100); 
   }
 
   &__Content {    
@@ -19,15 +20,17 @@
   }
 
   &__Header{  
-    height: 15%;   
-    //border: 1px solid red; 
-    background-color: red; 
+    height: 15%;
+    //box-sizing: border-box;   
+    //border: 2px solid red;     
+    background-color: rgb(140, 140, 140); 
   }
 
   &__Middle{  
-    height: 85%;  
-    // border: 1px solid magenta; 
-    background-color: magenta; 
+    height: 85%; 
+    //box-sizing: border-box;  
+    //border: 2px solid magenta;     
+    background-color: rgb(180, 180, 180); 
   }
 }
 
