@@ -1,19 +1,21 @@
 import React from 'react';
-import '../Layout/Layout.css'
+import '../Layout/Layout.scss'
 
 function Layout () {
-
     return(        
         <div className="Layout">
-            <div className="Layout-Sidebar">
+            <div className="Layout__Sidebar">
                 replace div with Sidebar component
             </div>
-            <div className="Layout-Header" >
-                replace div with Header component
+            <div className="Layout__Content" >
+                <div className="Layout__Header" >
+                    replace div with Header component
+                </div>
+                <div className="Layout__Middle" >
+                    replace div with Middle component
+                </div>  
             </div>
-            <div className="Layout-Middle" >
-                replace div with Middle component
-            </div>            
+                     
         </div>        
     )
 }
