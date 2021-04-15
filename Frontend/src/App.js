@@ -1,6 +1,7 @@
 import { Button, MuiThemeProvider } from "@material-ui/core";
 import VideoContainer from "./Video";
 import theme from "./theme";
+import Layout from './components/Layout/Layout'
 
 function App() {
     const videoPlayerOptions = (src, type) => ({
@@ -20,8 +21,11 @@ function App() {
     return (
         <MuiThemeProvider theme={theme}>
             <div className="App">
+                <Layout/>
+                {/*
                 <VideoContainer playerOptions={videoPlayerOptions('videoteka-video.mp4', 'video/mp4')}/>
                 <Button variant="contained" color="primary">Share</Button>
+                */}
             </div>
         </MuiThemeProvider>
     );
