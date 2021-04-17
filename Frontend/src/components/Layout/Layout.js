@@ -1,5 +1,6 @@
 import React from 'react';
-import '../Layout/Layout.scss'
+import '../Layout/Layout.scss';
+import Middle from './Middle/Middle';
 
 function Layout () {
     return(        
@@ -11,9 +12,8 @@ function Layout () {
                 <div className="Layout__Header" >
                     replace div with Header component
                 </div>
-                <div className="Layout__Middle" >
-                    replace div with Middle component
-                </div>  
+                
+                <Middle/> 
             </div>
                      
         </div>        
