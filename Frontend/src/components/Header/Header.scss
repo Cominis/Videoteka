@@ -1,0 +1,34 @@
+.HeaderContent {
+    margin-left: 10px;
+    border-bottom: 2px solid black;
+}
+
+.SearchBar {
+    margin-top: 20px;
+    width: 70%;
+}
+
+.HeaderButtons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    //flex-direction: column;
+}
+
+#HeaderButton {
+    display: "flex";
+    padding: 5px;
+    margin: 5px;
+}
+
+.FolderName {
+    margin: 0px;
+}
+
+#ToolbarAdjustment {
+    margin-top: 15px;
+    min-height: 50px;
+    padding-left: 0px;
+    padding-right: 16px;
+    padding-bottom: 0px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import '../Layout/Layout.scss'
-import { Toolbar } from '@material-ui/core';
+import '../Layout/Layout.scss';
+import '../Header/Header.scss';
+import { Toolbar, Button } from '@material-ui/core';
 import SearchBar from "material-ui-search-bar";
 
 // Placeholder connectection to the backend
@@ -23,19 +24,26 @@ function Header() {
     return (
         <div className="Layout__Header" >
             <div className="HeaderContent">
+                
                 <div>
-                    <SearchBar
+                    <SearchBar className="SearchBar"
                         onChange={(newValue) => setSearchText({ searchText: newValue })}
                         onRequestSearch={() => doSomethingWith(searchText)}
                     />
                 </div>
+                
                 <Toolbar id="ToolbarAdjustment">
-                    <h2> {folderName} </h2>
-                    <div className="FolderName">
-                        <button className="MenuButton"> Add new video </button>
-                        <button className="MenuButton InfoButton"> i </button>
+
+                    <h1 className="FolderName"> {folderName} </h1>
+
+                    <div className="HeaderButtons">
+
+                        {/* For now, buttons which don't do anything */}
+                        <Button id="HeaderButton" variant="contained"> Add new video </Button>
+                        <Button id="HeaderButton" variant="contained"> Info </Button>
                     </div>
                 </Toolbar>
+                
             </div>
         </div>
     )
