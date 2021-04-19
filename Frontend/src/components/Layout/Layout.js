@@ -14,7 +14,7 @@ function Layout() {
             <div className="Layout__Content" >
 
                 {/* The Header component is being handled by Header.js now*/}
-                {Header()}
+                <Header />
 
                 <div className="Layout__Middle" >
                     replace div with Middle component
