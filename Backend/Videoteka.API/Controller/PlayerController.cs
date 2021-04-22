@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 namespace Videoteka.API.Controller
 {
     [ApiController]
-    [Route("")]
+    [Route("[controller]")]
     public class PlayerController : ControllerBase
     {
         private const int BufferSize = 1000;
@@ -33,16 +33,16 @@ namespace Videoteka.API.Controller
             {
                 return NotFound();
             }
+            
             var memory = new MemoryStream();
-
             var buffer = new byte[BufferSize];
             
             await using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var totalSize = (int) fileStream.Length;
+            var totalSize = fileStream.Length;
             
             while (totalSize > 0)
             {
-                var count = totalSize > BufferSize ? BufferSize : totalSize;
+                var count = totalSize > BufferSize ? BufferSize : (int) totalSize;
                 var sizeBufferRead = fileStream.Read(buffer, 0, count);
                 await memory.WriteAsync(buffer.AsMemory(0, sizeBufferRead)); 
                 totalSize -= sizeBufferRead;
