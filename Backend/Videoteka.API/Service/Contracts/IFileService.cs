@@ -7,5 +7,6 @@ namespace Videoteka.API.Service.Contracts
     {
         Task<bool> FileExists(IFormFile formFile);
         Task CreateFile(IFormFile formFile);
+        Task<string> GetFilePath(string filename);
     }
 }

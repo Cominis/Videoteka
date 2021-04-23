@@ -24,5 +24,11 @@ namespace Videoteka.API.Service
             var isFileExists = File.Exists(fullFilePath);
             return Task.FromResult(isFileExists);
         }
+
+        public Task<string> GetFilePath(string filename)
+        {
+            var path = Path.Combine(Config.FileUploadDirectory, filename);
+            return Task.FromResult(File.Exists(path) ? path : null);
+        }
     }
 }
