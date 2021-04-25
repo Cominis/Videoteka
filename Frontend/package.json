@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/core": "7.12.3",
     "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@svgr/webpack": "5.5.0",
     "@testing-library/jest-dom": "^5.11.9",
@@ -41,6 +42,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "material-ui-search-bar": "^1.0.0",
     "mini-css-extract-plugin": "0.11.3",
     "node-sass": "^5.0.0",
     "optimize-css-assets-webpack-plugin": "5.0.4",
