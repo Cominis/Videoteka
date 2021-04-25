@@ -15,8 +15,10 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import DeleteIcon from "@material-ui/icons/Delete";
+import FolderIcon from "@material-ui/icons/Folder";
+import Logo from "@material-ui/icons/YouTube";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -70,11 +72,16 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     display: "flex",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
+  },
+  logo: {
+    color: "red",
+    marginLeft: theme.spacing(1),
   },
   content: {
     flexGrow: 1,
@@ -94,6 +101,14 @@ const MiniDrawer = (props) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  let history = useHistory();
+
+  const handleClick = (route) => {
+    history.push("/" + route);
+  };
+  const deleteText = "Recently deleted files";
+  const toolbarName = "Videoteka";
 
   return (
     <div className={classes.root}>
@@ -117,7 +132,7 @@ const MiniDrawer = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+            {toolbarName}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -135,6 +150,7 @@ const MiniDrawer = (props) => {
         }}
       >
         <div className={classes.toolbar}>
+          <Logo className={classes.logo} />
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -145,27 +161,24 @@ const MiniDrawer = (props) => {
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
+          {props.folders.map((text) => (
+            <ListItem button key={text} onClick={() => handleClick(text)}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <FolderIcon /> {/* TODO change state on click*/}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <ListItem button key={deleteText}>
+          <ListItemIcon>
+            <DeleteIcon />
+          </ListItemIcon>
+          <ListItemText primary={deleteText} />
+        </ListItem>
       </Drawer>
+      {/* TODO content is added here*/}
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Typography paragraph>
