@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import  playButton from '../../../../../assets/play-button.PNG';
+import  playButtonIMG from '../../../../../assets/play-button.PNG';
 
 
 const useStyles = makeStyles({
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },      
   });
 
-function Video () {
+function Video (props) {
 
     const classes = useStyles();
 
@@ -37,10 +37,10 @@ function Video () {
             <CardMedia className={classes.top}
                 component="img"            
                 alt="Play Button"
-                image= {playButton}/>
+                image= {playButtonIMG}/>
             <CardContent className={classes.bottom}  >
             <Typography className={classes.title} >
-                Video Title
+                {props.title}
             </Typography>          
             </CardContent>
         </CardActionArea>      
