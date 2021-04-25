@@ -40,6 +40,7 @@ namespace Videoteka.API
                 .AddControllers()
                 .AddFluentValidation();
             services.AddTransient<IValidator<UploadVideoRequest>, UploadVideoValidator>();
+            services.AddTransient<IValidator<PlayerRequest>, PlayerValidator>();
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsNameAll, builder => builder
