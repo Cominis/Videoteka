@@ -30,7 +30,6 @@ const useStyles = makeStyles({
 function Video (props) {
 
     const classes = useStyles();
-
     return(
         <Card >
         <CardActionArea className={classes.container}>
