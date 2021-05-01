@@ -1,3 +1,4 @@
+using System.Text.Json;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -31,16 +32,22 @@ namespace Videoteka.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<VideotekaDbContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("VideotekaDbConnection")));
-            services.AddMediatR(typeof(Startup));
-            services.AddScoped<IVideoRepository, VideoRepository>();
-            services.AddScoped<IFileService, FileService>();
             services
                 .AddControllers()
-                .AddFluentValidation();
+                .AddFluentValidation()
+                .AddJsonOptions(options =>
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
+            // Db
+            services.AddDbContext<VideotekaDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("VideotekaDbConnection")));
+            // Libraries
+            services.AddMediatR(typeof(Startup));
+            // Services
+            services.AddScoped<IVideoRepository, VideoRepository>();
+            services.AddScoped<IFileService, FileService>();
             services.AddTransient<IValidator<UploadVideoRequest>, UploadVideoValidator>();
             services.AddTransient<IValidator<PlayerRequest>, PlayerValidator>();
+            services.AddTransient<IValidator<GetUserVideosRequest>, GetUserVideosRequestValidator>();
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsNameAll, builder => builder
