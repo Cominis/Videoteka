@@ -25,27 +25,28 @@ const useStyles = makeStyles((theme) => ({
 
 function Middle () {
     const classes = useStyles();  
-    const [videoList, setVideoList] = useState([]); 
+    const [videoList, setVideoList] = useState([]);     
 
-    //TO DO: load video info from database
-    let folderVideos = [
-        {id: 1, title: 'Video 1', thumbnail: 'src=???'},
-        {id: 2, title: 'Video 2', thumbnail: 'src=???'},
-        {id: 3, title: 'Video 3', thumbnail: 'src=???'},
-        {id: 4, title: 'Video 4', thumbnail: 'src=???'},
-        {id: 5, title: 'Video 5', thumbnail: 'src=???'},
-        {id: 6, title: 'Video 6', thumbnail: 'src=???'},
-        {id: 7, title: 'Video 7', thumbnail: 'src=???'},
-        {id: 8, title: 'Video 8', thumbnail: 'src=???'},
-    ];
-
-    let newVideoList  = videoList.concat(folderVideos);
+    function loadVideoList(){
+        //TO DO: load video info from database
+        let folderVideos = [
+            {id: 1, title: 'Video 1', thumbnail: 'src=???'},
+            {id: 2, title: 'Video 2', thumbnail: 'src=???'},
+            {id: 3, title: 'Video 3', thumbnail: 'src=???'},
+            {id: 4, title: 'Video 4', thumbnail: 'src=???'},
+            {id: 5, title: 'Video 5', thumbnail: 'src=???'},
+            {id: 6, title: 'Video 6', thumbnail: 'src=???'},
+            {id: 7, title: 'Video 7', thumbnail: 'src=???'},
+            {id: 8, title: 'Video 8', thumbnail: 'src=???'},
+        ];
+          
+        setVideoList(folderVideos);
+    }    
 
     useEffect(() => {
-        setVideoList(newVideoList)
+        loadVideoList()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);   
-        
+    },[]);           
     
     return (       
         <div className = {classes.middle}>           
