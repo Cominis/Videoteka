@@ -1,22 +1,26 @@
 import React from 'react';
 import '../Layout/Layout.scss';
+import Header from "../Header/Header.js";
 import Middle from './Middle/Middle';
 
-function Layout () {
-    return(        
+
+function Layout() {
+
+    return (
         <div className="Layout">
+
             <div className="Layout__Sidebar">
                 replace div with Sidebar component
             </div>
+
             <div className="Layout__Content" >
-                <div className="Layout__Header" >
-                    replace div with Header component
-                </div>
+
+                {/* The Header component is being handled by Header.js now*/}
+                <Header />
                 
                 <Middle/> 
             </div>
-                     
-        </div>        
+        </div>
     )
 }
 
