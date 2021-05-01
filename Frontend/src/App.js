@@ -1,23 +1,23 @@
-import { Button, MuiThemeProvider } from "@material-ui/core";
-import VideoContainer from "./Video";
+import { /*Button,*/ MuiThemeProvider } from "@material-ui/core";
+//import VideoContainer from "./Video";
 import theme from "./theme";
 import Layout from './components/Layout/Layout'
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
-    const videoPlayerOptions = (src, type) => ({
-        autoplay: false,
-        playbackRates: [0.25, 0.5, 1, 1.5, 2],
-        width: 768,
-        height: 432,
-        controls: true,
-        sources: [
-            {
-                src,
-                type,
-            },
-        ],
-    });
+    // const videoPlayerOptions = (src, type) => ({
+    //     autoplay: false,
+    //     playbackRates: [0.25, 0.5, 1, 1.5, 2],
+    //     width: 768,
+    //     height: 432,
+    //     controls: true,
+    //     sources: [
+    //         {
+    //             src,
+    //             type,
+    //         },
+    //     ],
+    // });
 
     return (
         <MuiThemeProvider theme={theme}>

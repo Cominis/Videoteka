@@ -5,7 +5,7 @@
   height: 100vh;
 
   &__Sidebar {
-    height: 100%; // kol kas viskas scalable, reiks gal veliau pridet kokiu min-width max-height ar pns
+    height: 100%; 
     width: 20%;
     //box-sizing: border-box;
     //border: 2px solid aqua;
@@ -17,6 +17,7 @@
     //height: 100%;
     display: flex;
     flex-direction: column;
+    z-index: 5;
   }
 
   &__Header {
@@ -24,12 +25,5 @@
     //box-sizing: border-box;
     //border: 2px solid red;
     background-color: white;
-  }
-
-  &__Middle {
-    height: 100%;
-    //box-sizing: border-box;
-    //border: 2px solid magenta;
-    background-color: rgb(180, 180, 180);
-  }
+  } 
 }
