@@ -19,19 +19,19 @@ function App() {
         setSnackbarOpen(true);
     }
 
-    const videoPlayerOptions = (src, type) => ({
-        autoplay: false,
-        playbackRates: [0.25, 0.5, 1, 1.5, 2],
-        width: 768,
-        height: 432,
-        controls: true,
-        sources: [
-            {
-                src,
-                type,
-            },
-        ],
-    });
+    // const videoPlayerOptions = (src, type) => ({
+    //     autoplay: false,
+    //     playbackRates: [0.25, 0.5, 1, 1.5, 2],
+    //     width: 768,
+    //     height: 432,
+    //     controls: true,
+    //     sources: [
+    //         {
+    //             src,
+    //             type,
+    //         },
+    //     ],
+    // });
 
     return (
         <MuiThemeProvider theme={theme}>
