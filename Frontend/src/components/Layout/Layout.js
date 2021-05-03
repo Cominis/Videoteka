@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../Layout/Layout.scss';
 import Header from "../Header/Header.js";
+import Middle from './Middle/Middle';
+
 
 function Layout() {
 
@@ -15,11 +17,8 @@ function Layout() {
 
                 {/* The Header component is being handled by Header.js now*/}
                 <Header />
-
-                <div className="Layout__Middle" >
-                    replace div with Middle component
-                </div>
-
+                
+                <Middle/> 
             </div>
         </div>
     )
