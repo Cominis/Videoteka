@@ -65,10 +65,10 @@ namespace Videoteka.API
             }
 
             app.UseHttpsRedirection();
-            
-            app.UseCors(CorsNameAll);
 
             app.UseRouting();
+            
+            app.UseCors(CorsNameAll);
 
             app.UseAuthorization();
 
