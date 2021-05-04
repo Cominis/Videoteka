@@ -1,6 +1,6 @@
 import { API_URL_PREFIX } from '../constants';
 
-const makeRequest = (endpoint, method, additional) => {
+const makeRequest = async (endpoint, method, additional) => {
     return fetch(
         `${API_URL_PREFIX}${endpoint}`,
         {
@@ -11,21 +11,21 @@ const makeRequest = (endpoint, method, additional) => {
     ).then(response => {
         if (response.ok) {
             return response.json().catch(error => {
-                return Promise.resolve({});
+                return {};
             });
         }
         if (typeof response.text === 'function') {
-            return Promise.resolve(response.text().then(text => {
+            return response.text().then(text => {
                 return {
                     'error': text,
                     'statusCode': response.status,
                 }
-            }));
+            });
         }
-        return Promise.resolve({
+        return {
             'error': response.statusText,
             'statusCode': response.status,
-        })
+        }
     }).then(response => {
         return response;
     }).catch(error => {

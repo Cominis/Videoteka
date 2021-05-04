@@ -1,6 +1,6 @@
 import makeRequest from "./baseClient";
 
-const uploadVideo = (video) => {
+const uploadVideo = async (video) => {
     const formData = new FormData();
     formData.append('formFile', video);
 
