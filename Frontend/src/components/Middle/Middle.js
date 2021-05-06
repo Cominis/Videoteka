@@ -63,9 +63,9 @@ function Middle (props) {
     return (       
         <div id='middle' className = {classes.middle}>           
             <div className = {classes.grid}>
-                {videoList.map((video, i) =>                    
-                    <Video key={i} title ={video.title} />              
-                )}             
+                {videoList.map((video, i) =>(                    
+                    <Video key={i} index={i} title ={video.title}/>              
+                ))}             
             </div> 
             
             <InformationPanel open = {props.info}/>                       
