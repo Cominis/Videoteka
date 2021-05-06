@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 import '../Layout/Layout.scss';
 import Header from "../Header/Header.js";
-import Middle from './Middle/Middle';
+import Middle from '../Middle/Middle';
 
 
 function Layout() {
+
+    const [isInfoOpen, setInfoOpen] = useState(true); 
 
     return (
         <div className="Layout">
@@ -16,9 +18,9 @@ function Layout() {
             <div className="Layout__Content" >
 
                 {/* The Header component is being handled by Header.js now*/}
-                <Header />
+                <Header setInfo = {setInfoOpen} info = {isInfoOpen} />
                 
-                <Middle/> 
+                <Middle info = {isInfoOpen} /> 
             </div>
         </div>
     )

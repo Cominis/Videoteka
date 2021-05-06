@@ -14,12 +14,16 @@ function doSomethingWith(searchTextObject) {
     // TODO: Actually call the url
 }
 
-function Header() {
+function Header(props) {
 
     // State accessor to change the name of the Title
     const [folderName, setFolderName] = useState("Folder");
     // State accessor to get search bar text
     const [searchText, setSearchText] = useState("");
+
+    function toggleDrawer(){
+        props.setInfo(!props.info);
+    }
 
     return (
         <div className="Layout__Header" >
@@ -40,7 +44,7 @@ function Header() {
 
                         {/* For now, buttons which don't do anything */}
                         <Button id="HeaderButton" variant="contained"> Add new video </Button>
-                        <Button id="HeaderButton" variant="contained"> Info </Button>
+                        <Button id="HeaderButton" variant="contained" onClick={toggleDrawer}> Info </Button>
                     </div>
                 </Toolbar>
                 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import  playButtonIMG from '../../../../../assets/play-button.PNG';
+import  playButtonIMG from '../../../../assets/play-button.PNG';
 
 
 const useStyles = makeStyles({
