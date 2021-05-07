@@ -4,8 +4,9 @@ import VideoUploadConfirmation from '../VideoUploadConfirmation';
 import Button from '@material-ui/core/Button';
 import SnackbarContext from 'context/SnackbarContext';
 import { SEVERITY_ERROR, SEVERITY_INFO } from '../../../../constants';
+import PropTypes from 'prop-types';
 
-function VideoUpload() {
+function VideoUpload({ text }) {
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setSelected] = useState(false);
     const uploadFileInput = useRef()
@@ -46,7 +47,7 @@ function VideoUpload() {
     
     return (
         <div>
-            <Button id='HeaderButton' variant='contained' onClick={handleUploadButtonClick}>Add new video</Button>
+            <Button id='HeaderButton' variant='contained' onClick={handleUploadButtonClick}>{text}</Button>
             <input type='file' name='file' onChange={changeHandler} ref={uploadFileInput} style={{ display:'none' }} />
             {isSelected && (
                 <VideoUploadConfirmation
@@ -58,6 +59,14 @@ function VideoUpload() {
             )}
         </div>
     )
+}
+
+VideoUpload.propTypes = {
+    text: PropTypes.string,
+};
+
+VideoUpload.defaultProps = {
+    text: 'Add new video',
 }
 
 export default VideoUpload;
