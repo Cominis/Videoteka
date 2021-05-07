@@ -11,12 +11,10 @@ const useStyles = makeStyles({
             backgroundColor: '#ffcccb',
         }, 
     },
-
     container: {
         display: 'flex',
         flexDirection: 'column',        
     },
-
     top:{         
         width: 220,
         height: 125,     
@@ -38,14 +36,24 @@ function Video (props) {
     
     const classes = useStyles();
 
-    function toggleChecked(){      
-        document.getElementById(`video-${props.index}`).checked = true;  
+    function toggleSelection(){ 
+
+        let checkedVideo = document.getElementById(`video-${props.index}`); 
+       
+        if (!checkedVideo.checked){
+            checkedVideo.checked = true; 
+            props.setSelected({
+                id: props.id,
+                title: props.title,
+                thumbnail: playButtonIMG, 
+            });           
+        }   
     }
 
     return(
         <Card >
-            <input id={`video-${props.index}`}   type="radio" name="video" className={classes.input} /> 
-            <CardActionArea className={classes.container} onClick={toggleChecked}>
+            <input id={`video-${props.index}`}   type="radio" name="video-radio" className={classes.input} /> 
+            <CardActionArea className={classes.container} onClick={toggleSelection}>
                 <CardMedia className={classes.top}
                     component="img"            
                     alt="Play Button"

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Video from './Item/Video/Video';
 import InformationPanel from './InformationPanel/InformationPanel'
 import { makeStyles } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 let drawerWidth = 290;
 
@@ -18,7 +18,14 @@ const useStyles = makeStyles((theme) => ({
         overflowY: 'hidden',
         
         //backgroundColor: "rgb(180, 180, 180)",                
-    },   
+    },  
+    whiteSpace: {
+        position: 'absolute',
+        width: `calc(100% - ${drawerWidth}px + 20px)`, 
+        height: '100%',
+        top: 0,
+        left: 0, 
+    }, 
     grid: {
         overflowY: "scroll",
         marginTop: 50,
@@ -38,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 function Middle (props) {
     const classes = useStyles();  
     const [videoList, setVideoList] = useState([]);     
+    const [selectedVideo, setSelectedVideo] = useState({id: null, title: null, thumbnail: null});  
 
     function loadVideoList(){
         //TO DO: load video info from database
@@ -58,17 +66,33 @@ function Middle (props) {
     useEffect(() => {
         loadVideoList()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);           
+    },[]);  
+    
+    function removeSelected(){
+
+        let videoRadio = document.getElementsByName('video-radio');
+
+        //remove checked from all video items
+        videoRadio.forEach((video)=> video.checked = false)
+        
+        setSelectedVideo({
+            id: null,
+            title: null,
+            thumbnail: null 
+        });
+    }
+   
     
     return (       
-        <div id='middle' className = {classes.middle}>           
+        <div id='middle' className = {classes.middle}> 
+            <div className = {classes.whiteSpace} onClick={removeSelected}/>         
             <div className = {classes.grid}>
                 {videoList.map((video, i) =>(                    
-                    <Video key={i} index={i} title ={video.title}/>              
+                    <Video key={i} index={i} id={video.id} title ={video.title} setSelected={setSelectedVideo} selected={selectedVideo}/>              
                 ))}             
             </div> 
             
-            <InformationPanel open = {props.info}/>                       
+            <InformationPanel open = {props.info} selected={selectedVideo}/>                       
                       
         </div>
     );
