@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
     paper: {
-        //visibility: 'hidden',
+        
         width: 250,       
         height: "100%",   
         position: 'absolute',        

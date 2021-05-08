@@ -4,39 +4,41 @@ import InformationPanel from './InformationPanel/InformationPanel'
 import { makeStyles } from '@material-ui/core/styles';
 
 
-let drawerWidth = 290;
+let drawerWidth = 290; // drawer paper size + scroll bar size 
 
 const useStyles = makeStyles((theme) => ({
    
-    middle:{
+    middle:{        
+        transition: '3 sec',
         position: 'relative',
         display: "flex",
         flexDirection: "row",        
         justifyContent: 'space-between',
-        height: "85%;",
+        height: "100%",
         overflowX: 'hidden',
-        overflowY: 'hidden',
-        
-        //backgroundColor: "rgb(180, 180, 180)",                
+        overflowY: 'hidden',                 
     },  
     whiteSpace: {
         position: 'absolute',
-        width: `calc(100% - ${drawerWidth}px + 20px)`, 
+        width: '100%', 
         height: '100%',
         top: 0,
         left: 0, 
-    }, 
-    grid: {
+    },    
+    grid: {  
+        transition: 'width 0.2s',      
         overflowY: "scroll",
         marginTop: 50,
         marginLeft: 40,
         display: "grid",        
-        gridTemplateColumns: "repeat(5, 220px)",
+        gridTemplateColumns: "repeat(auto-fit, 220px)",
         gridAutoRows: 170,
         gap: 15,
-        //height: 'inherit', 
-        width: `calc(100% - ${drawerWidth}px)`,  
+        width: '100%', 
           
+    },
+    InfoPanelOpen: {      
+        width: `calc(100% - ${drawerWidth}px)`,  
     },
     
      
@@ -46,6 +48,24 @@ function Middle (props) {
     const classes = useStyles();  
     const [videoList, setVideoList] = useState([]);     
     const [selectedVideo, setSelectedVideo] = useState({id: null, title: null, thumbnail: null});  
+
+
+    //If information panel is open, add additional classes to adjust width
+    let gridWithPanel, whiteSpaceWithPanel;
+    if(props.info){
+        gridWithPanel = classes.InfoPanelOpen;
+        whiteSpaceWithPanel =classes.InfoPanelOpen;      
+    }
+    else{ 
+        // better than undefined?
+        gridWithPanel = ''; 
+        whiteSpaceWithPanel ='';   
+    }    
+    
+    useEffect(() => {
+        loadVideoList()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]); 
 
     function loadVideoList(){
         //TO DO: load video info from database
@@ -61,20 +81,14 @@ function Middle (props) {
         ];
           
         setVideoList(folderVideos);
-    }    
-
-    useEffect(() => {
-        loadVideoList()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);  
-    
+    }   
+     
     function removeSelected(){
-
+        //select all radio inputs inside video components
         let videoRadio = document.getElementsByName('video-radio');
-
-        //remove checked from all video items
+        //remove checked from all video components
         videoRadio.forEach((video)=> video.checked = false)
-        
+        //remove selected video        
         setSelectedVideo({
             id: null,
             title: null,
@@ -85,13 +99,12 @@ function Middle (props) {
     
     return (       
         <div id='middle' className = {classes.middle}> 
-            <div className = {classes.whiteSpace} onClick={removeSelected}/>         
-            <div className = {classes.grid}>
+            <div className = {`${classes.whiteSpace} ${whiteSpaceWithPanel}`} onClick={removeSelected}/>         
+            <div className = {`${classes.grid} ${gridWithPanel}`}>
                 {videoList.map((video, i) =>(                    
                     <Video key={i} index={i} id={video.id} title ={video.title} setSelected={setSelectedVideo} selected={selectedVideo}/>              
                 ))}             
-            </div> 
-            
+            </div>             
             <InformationPanel open = {props.info} selected={selectedVideo}/>                       
                       
         </div>
