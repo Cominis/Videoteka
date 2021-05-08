@@ -9,7 +9,7 @@ function VideoUploadInfo({ video }) {
             <Typography>Name: {video.name}</Typography>
             <Typography>Type: {video.type}</Typography>
             <Typography>Size: {formatBytes(video.size)}</Typography>
-            <Typography>Last modified: {video.lastModifiedDate.toLocaleDateString()}</Typography>
+            <Typography>Last modified: {new Date(video.lastModified).toLocaleDateString()}</Typography>
         </>
     );
 };

@@ -1,27 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import Video from './Item/Video/Video';
 import { makeStyles } from '@material-ui/core/styles';
-
+import VideoDragAndDrop from '../../Video/VideoDragAndDrop';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-   
-    middle:{
-        height: "85%;",
-        //backgroundColor: "rgb(180, 180, 180)",                
-    },   
-    grid: {
-        marginTop: 50,
-        marginLeft: 40,
-        display: "grid",
-        gridTemplateColumns: "repeat(6, 220px)",
-        gridAutoRows: 170,
-        gap: 15,       
+    root: {
+        flexGrow: 1,
+        paddingTop: '6vh',
+        paddingLeft: '1.5vw',
     },
-    formControl: {        
-        minWidth: 160,        
-    },
-     
-  }));
+}));
 
 function Middle () {
     const classes = useStyles();  
@@ -48,14 +37,16 @@ function Middle () {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);           
     
-    return (       
-        <div className = {classes.middle}>           
-            <div className = {classes.grid}>
-            {videoList.map((video, i) =>                    
-                <Video key={i} title ={video.title} />              
-            )}             
-            </div>  
-        </div>
+    return (
+        <VideoDragAndDrop showEmptyState={videoList.length === 0}>
+            <Grid container className={classes.root} spacing={2}>
+                {videoList.map((video, i) =>
+                    <Grid item key={i}>
+                        <Video title={video.title} />
+                    </Grid>
+                )}
+            </Grid>
+        </VideoDragAndDrop>
     );
 }
 
