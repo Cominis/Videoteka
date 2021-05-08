@@ -6,7 +6,7 @@ import Middle from '../Middle/Middle';
 
 function Layout() {
 
-    const [isInfoOpen, setInfoOpen] = useState(true); 
+    const [isInfoOpen, setInfoOpen] = useState(false); 
 
     return (
         <div className="Layout">
