@@ -9,5 +9,9 @@ namespace Videoteka.API.Repository.Contracts
     {
         Task<int> Create(IFormFile video);
         Task<IList<VideoEntity>> GetUserVideos(int userId);
+        Task<VideoEntity> GetAsync(int videoId);
+        Task DeleteAsync(int videoId);
+        Task<IEnumerable<VideoEntity>> GetUserTrashedVideosAsync(int userId);
+        Task TrashVideoAsync(VideoEntity video);
     }
 }
