@@ -103,7 +103,7 @@ namespace Videoteka.API.Repository
             await using var dbConnection = new SqlConnection(_connectionString);
                                                
             const string query = @"SELECT * FROM [VideotekaDb].[dbo].[Videos]
-                                      WHERE UserId = @UserId AND IsTrashed = @IsInTrash";
+                                   WHERE UserId = @UserId AND IsTrashed = @IsInTrash";
                
             var result =  await dbConnection.QueryAsync<VideoEntity>(query, new
             {
