@@ -59,6 +59,15 @@ namespace Videoteka.API.Controller
             return new GetUserVideosResponse {UserId = request.UserId, UserVideos = userVideos};
         }
         /// <summary>
+        /// Get untrashed videos of user
+        /// </summary>
+        [HttpGet("untrashed")]
+        public async Task<GetUserVideosResponse> GetUnTrashedUserVideos([FromQuery] GetUserVideosRequest request)
+        {
+            var userVideos = await _mediator.Send(new GetUntrashedUserVideosQuery{UserId = request.UserId});
+            return new GetUserVideosResponse {UserId = request.UserId, UserVideos = userVideos};
+        }
+        /// <summary>
         /// Puts video of user to `Trash bin`
         /// </summary>
         /// <param name="request"></param>

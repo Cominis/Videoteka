@@ -11,7 +11,8 @@ namespace Videoteka.API.Repository.Contracts
         Task<IList<VideoEntity>> GetUserVideos(int userId);
         Task<VideoEntity> GetAsync(int videoId);
         Task DeleteAsync(int videoId);
-        Task<IEnumerable<VideoEntity>> GetUserTrashedVideosAsync(int userId);
+        Task<IList<VideoEntity>> GetUserTrashedVideosAsync(int userId);
+        Task<IList<VideoEntity>> GetUntrashedUserVideos(int userId);
         Task TrashVideoAsync(VideoEntity video);
     }
 }

@@ -4,8 +4,8 @@ using Videoteka.API.Data.Entity;
 
 namespace Videoteka.API.CQS.Video
 {
-    public class GetUserTrashedVideosQuery : IRequest<IList<VideoEntity>>
+    public class GetUntrashedUserVideosQuery : IRequest<IList<VideoEntity>>
     {
-        public int UserId { get; init; }
+        public int UserId { get; set; }
     }
 }

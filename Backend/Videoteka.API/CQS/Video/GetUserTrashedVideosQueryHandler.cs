@@ -7,7 +7,7 @@ using Videoteka.API.Repository.Contracts;
 
 namespace Videoteka.API.CQS.Video
 {
-    public class GetUserTrashedVideosQueryHandler : IRequestHandler<GetUserTrashedVideosQuery, IEnumerable<VideoEntity>>
+    public class GetUserTrashedVideosQueryHandler : IRequestHandler<GetUserTrashedVideosQuery, IList<VideoEntity>>
     {
         private readonly IVideoRepository _videoRepository;
         
@@ -16,7 +16,7 @@ namespace Videoteka.API.CQS.Video
             _videoRepository = videoRepository;
         }
 
-        public async Task<IEnumerable<VideoEntity>> Handle(GetUserTrashedVideosQuery request, CancellationToken cancellationToken)
+        public async Task<IList<VideoEntity>> Handle(GetUserTrashedVideosQuery request, CancellationToken cancellationToken)
         {
             var userTrashedVideos = await _videoRepository.GetUserTrashedVideosAsync(request.UserId);
             return userTrashedVideos;

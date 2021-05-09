@@ -82,7 +82,23 @@ namespace Videoteka.API.Repository
             });
         }
 
-        public async Task<IEnumerable<VideoEntity>> GetUserTrashedVideosAsync(int userId)
+        public async Task<IList<VideoEntity>> GetUserTrashedVideosAsync(int userId)
+        {
+            await using var dbConnection = new SqlConnection(_connectionString);
+                                               
+            const string query = @"SELECT * FROM [VideotekaDb].[dbo].[Videos]
+                                   WHERE UserId = @UserId AND IsTrashed = @IsInTrash";
+               
+            var result =  await dbConnection.QueryAsync<VideoEntity>(query, new
+            {
+                UserId = userId,
+                IsInTrash = true
+            });
+
+            return result.ToList();
+        }
+
+        public async Task<IList<VideoEntity>> GetUntrashedUserVideos(int userId)
         {
             await using var dbConnection = new SqlConnection(_connectionString);
                                                
@@ -92,7 +108,7 @@ namespace Videoteka.API.Repository
             var result =  await dbConnection.QueryAsync<VideoEntity>(query, new
             {
                 UserId = userId,
-                IsInTrash = true
+                IsInTrash = false
             });
 
             return result.ToList();
