@@ -70,7 +70,6 @@ namespace Videoteka.API.Controller
         /// <summary>
         /// Puts video of user to `Trash bin`
         /// </summary>
-        /// <param name="request"></param>
         [HttpPut("trash")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

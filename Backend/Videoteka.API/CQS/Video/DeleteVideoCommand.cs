@@ -5,6 +5,6 @@ namespace Videoteka.API.CQS.Video
 {
     public class DeleteVideoCommand : IRequest<Task>
     {
-        public  int VideoId { get; init; }
+        public int VideoId { get; init; }
     }
 }
