@@ -9,9 +9,18 @@ import EmptyState from '../EmptyState';
 import DropZone from '../DropZone/DropZone';
 
 const useStyles = makeStyles((theme) => ({
-    dragAndDrop: {
-        position: 'relative',
-        display: 'inline-block',
+    dragAndDrop: {        
+        transition: 'width 0.2s', 
+        position: 'absolute',
+        width: '100%', 
+        height: '100%',
+        top: 0,
+        left: 0,
+        overflowY: "scroll",
+        //overflowX: "hidden",      
+    },
+    InfoPanelOpen: {      
+        width: `calc(100% - 250px)`,  
     },
 }));
 
@@ -23,6 +32,14 @@ function VideoDragAndDrop(props) {
     const { showMessageSnackbar } = useContext(SnackbarContext);
 
     let depthCounter = 1;
+
+    let dragAndDropWithPanel;
+    if(props.InfoOpen){
+        dragAndDropWithPanel = classes.InfoPanelOpen;        
+    }
+    else{         
+        dragAndDropWithPanel = "";
+    } 
 
     const handleDragEnter = (event) => {
         event.preventDefault();
@@ -83,7 +100,7 @@ function VideoDragAndDrop(props) {
             onDragLeave={event => handleDragLeave(event)}
             onDragOver={event => handleDragOver(event)}
             onDrop={event => handleDrop(event)}
-            className={classes.dragAndDrop}
+            className={`${classes.dragAndDrop} ${dragAndDropWithPanel}`}          
         >
             {dragging && (
                 <DropZone/>

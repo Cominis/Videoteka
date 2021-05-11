@@ -5,10 +5,8 @@ import { Button } from '@material-ui/core';
 
 
 const useStyles = makeStyles(() => ({
-    paper: {
-        
-        width: 250,       
-        height: "100%",   
+    paper: {        
+        width: 250,      
         position: 'absolute',        
         backgroundColor: 'rgb(220,220,220)',
     },  

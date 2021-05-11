@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     dropZone: {
         zIndex: 999,
         border: 'dashed #a1a1a1 7px',
-        backgroundColor: 'rgba(255,255,255,.8)',
+        backgroundColor: 'rgba(255,255,255,.95)',
         position: 'absolute',
         left: 0,
         right: 0,
