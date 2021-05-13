@@ -16,8 +16,7 @@ namespace Videoteka.API.CQS.Video
         {
             _videoRepository = videoRepository;
         }
-
-
+        
         public async Task<IList<VideoEntity>> Handle(GetUserVideosQuery request, CancellationToken cancellationToken)
         {
             var userVideos = await _videoRepository.GetUserVideos(request.UserId);

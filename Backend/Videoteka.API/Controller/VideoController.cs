@@ -22,7 +22,6 @@ namespace Videoteka.API.Controller
             _mediator = mediator;
             _fileService = fileService;
         }
-
         /// <summary>
         /// Creates a new video
         /// </summary>
@@ -48,6 +47,52 @@ namespace Videoteka.API.Controller
         {
             var userVideos = await _mediator.Send(new GetUserVideosQuery(request.UserId));
             return new GetUserVideosResponse {UserId = request.UserId, UserVideos = userVideos};
+        }
+        /// <summary>
+        /// Gets trashed videos of an user
+        /// </summary>
+        [HttpGet("trashed")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<GetUserVideosResponse> GetTrashedUserVideos([FromQuery] GetUserVideosRequest request)
+        {
+            var userVideos = await _mediator.Send(new GetUserTrashedVideosQuery{UserId = request.UserId});
+            return new GetUserVideosResponse {UserId = request.UserId, UserVideos = userVideos};
+        }
+        /// <summary>
+        /// Get untrashed videos of user
+        /// </summary>
+        [HttpGet("untrashed")]
+        public async Task<GetUserVideosResponse> GetUnTrashedUserVideos([FromQuery] GetUserVideosRequest request)
+        {
+            var userVideos = await _mediator.Send(new GetUntrashedUserVideosQuery{UserId = request.UserId});
+            return new GetUserVideosResponse {UserId = request.UserId, UserVideos = userVideos};
+        }
+        /// <summary>
+        /// Puts video of user to `Trash bin`
+        /// </summary>
+        [HttpPut("trash")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        public async Task<IActionResult> TrashVideo([FromQuery] TrashUserVideoRequest request)
+        {
+            var video = await _mediator.Send(new GetVideoByVideoIdQuery {VideoId = request.VideoId});
+            if (video is null) return NotFound();
+            await _mediator.Send(new TrashVideoCommand {Video = video});
+            return NoContent();
+        }
+        /// <summary>
+        /// Deletes video
+        /// </summary>
+        [HttpDelete("{videoId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteVideo(int videoId)
+        {
+            var video = await _mediator.Send(new GetVideoByVideoIdQuery{VideoId = videoId});
+            if (video is null) return NotFound();
+            await _mediator.Send(new DeleteVideoCommand{VideoId = videoId});
+            return Ok();
         }
     }
 }
