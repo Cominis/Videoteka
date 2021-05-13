@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     },
     contentTitle: {
         marginLeft: 10,
-       width: 220,   
+        width: 220,   
     },
     contentInfo: {
         height: 'inherit',
