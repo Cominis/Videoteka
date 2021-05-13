@@ -1,22 +1,29 @@
-import React from 'react';
-import '../Layout/Layout.scss'
+import React,{useState} from 'react';
+import '../Layout/Layout.scss';
+import Header from "../Header/Header.js";
+import Middle from '../Middle/Middle';
+import Sidebar from '../Sidebar/Sidebar';
 
-function Layout () {
-    return(        
+
+function Layout() {
+
+    const [isInfoOpen, setInfoOpen] = useState(false); 
+
+    return (
         <div className="Layout">
+
             <div className="Layout__Sidebar">
-                replace div with Sidebar component
+               <Sidebar/>
             </div>
+
             <div className="Layout__Content" >
-                <div className="Layout__Header" >
-                    replace div with Header component
-                </div>
-                <div className="Layout__Middle" >
-                    replace div with Middle component
-                </div>  
+
+                {/* The Header component is being handled by Header.js now*/}
+                <Header setInfo = {setInfoOpen} info = {isInfoOpen} />
+                
+                <Middle info = {isInfoOpen} /> 
             </div>
-                     
-        </div>        
+        </div>
     )
 }
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Videoteka.API.Data;
 
 namespace Videoteka.API.Migrations
 {
     [DbContext(typeof(VideotekaDbContext))]
-    partial class VideotekaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210501091533_UserVideoRel")]
+    partial class UserVideoRel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,17 +46,11 @@ namespace Videoteka.API.Migrations
                     b.Property<DateTime>("DateUploaded")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsTrashed")
-                        .HasColumnType("bit");
-
                     b.Property<long>("SizeInBytes")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("TrashedDateTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
