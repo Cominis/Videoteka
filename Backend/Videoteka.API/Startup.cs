@@ -8,9 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Videoteka.API.Data;
 using Videoteka.API.Data.Request;
+using Videoteka.API.Middleware;
+using Videoteka.API.Middleware.Logger;
+using Videoteka.API.Middleware.Videoteka.API.Middleware;
 using Videoteka.API.Repository;
 using Videoteka.API.Repository.Contracts;
 using Videoteka.API.Service;
@@ -37,12 +41,18 @@ namespace Videoteka.API
                 .AddFluentValidation()
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
+            services.AddLogging(logging =>
+            {
+                logging.AddConsole();
+                logging.AddDebug();
+            });
             // Db
             services.AddDbContext<VideotekaDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("VideotekaDbConnection")));
             // Libraries
             services.AddMediatR(typeof(Startup));
             // Services
+            services.AddUserRequestExceptionLogger(Configuration);
             services.AddScoped<IVideoRepository, VideoRepository>();
             services.AddScoped<IFileService, FileService>();
             services.AddTransient<IValidator<UploadVideoRequest>, UploadVideoValidator>();
@@ -70,15 +80,12 @@ namespace Videoteka.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Videoteka.API v1"));
             }
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
-            
             app.UseCors(CorsNameAll);
-
             app.UseAuthorization();
-
+            app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+            app.UseMiddleware<ConcurrecnyExceptionMiddleware>();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
