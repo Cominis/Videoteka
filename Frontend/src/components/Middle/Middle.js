@@ -9,8 +9,7 @@ let drawerWidth = 290; // drawer paper size + scroll bar size
 
 const useStyles = makeStyles((theme) => ({
    
-    middle:{        
-        transition: '3 sec',
+    middle:{       
         position: 'relative',
         display: "flex",
         flexDirection: "row",        
@@ -29,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     grid: {             
         marginTop: 50,
         marginLeft: 40,     
-        gridAutoRows: 170,
         gap: 15,
         width: 'calc(100% - 40px)',         
     },    
@@ -37,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         width: `calc(100% - ${drawerWidth}px)`,  
     },    
      
-  }));
+}));
 
 function Middle (props) {
     const classes = useStyles();  
