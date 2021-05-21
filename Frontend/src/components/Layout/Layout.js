@@ -70,7 +70,7 @@ function Layout() {
         <div className={classes.Layout}>
 
             <div className={classes.Layout__Sidebar}>
-                <Drawer folders={["a", "b", "c", "d"]} setInfo = {setInfoOpen} info = {isInfoOpen} >
+                <Drawer folders={["a", "b", "c", "d"]}>
                     <Link to="/a"/>
                     <Link to="/b"/>
                     <Link to="/c"/>
