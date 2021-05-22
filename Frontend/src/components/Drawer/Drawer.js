@@ -105,7 +105,7 @@ const MiniDrawer = (props) => {
           {props.folders.map((text) => (
             <ListItem button key={text} onClick={() => handleClick(text)}>
               <ListItemIcon>
-                <FolderIcon /> {/* TODO change state on click*/}
+                <FolderIcon /> 
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -113,7 +113,7 @@ const MiniDrawer = (props) => {
         </List>
         <Divider />
 
-        <ListItem button key={deleteText}>
+        <ListItem button key={deleteText} onClick={() => handleClick('trash')}>
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
