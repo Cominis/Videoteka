@@ -18,7 +18,7 @@ function doSomethingWith(searchTextObject) {
 
 function Header(props) {
     // State accessor to change the name of the Title
-    const [folderName, setFolderName] = useState("Folder");
+    // const [folderName, setFolderName] = useState("Folder");
     // State accessor to get search bar text
     const [searchText, setSearchText] = useState("");
 
@@ -39,7 +39,7 @@ function Header(props) {
                 
                 <Toolbar id="ToolbarAdjustment">
 
-                    <h1 className="FolderName"> {folderName} </h1>
+                    <h1 className="FolderName"> {props.folderName} </h1>
 
                     <div className="HeaderButtons">
                        
