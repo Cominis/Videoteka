@@ -69,9 +69,9 @@ namespace Videoteka.API.Repository
             await using var dbConnection = new SqlConnection(_connectionString);
             
             const string query = @"INSERT INTO [VideotekaDb].[dbo].[Videos]
-                                   (Title, ContentType, DateUploaded, SizeInBytes)
+                                   (Title, ContentType, DateUploaded, SizeInBytes, UserId)
                                    OUTPUT INSERTED.Id
-                                   VALUES (@Title, @ContentType, @DateUploaded, @SizeInBytes)";
+                                   VALUES (@Title, @ContentType, @DateUploaded, @SizeInBytes, @UserId)";
 
             return await dbConnection.ExecuteScalarAsync<int>(query, new
             {
@@ -79,6 +79,7 @@ namespace Videoteka.API.Repository
                 ContentType = video.ContentType,
                 DateUploaded = DateTime.UtcNow,
                 SizeInBytes = video.Length,
+                UserId = 1
             });
         }
 
