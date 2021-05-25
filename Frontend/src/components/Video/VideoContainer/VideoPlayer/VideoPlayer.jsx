@@ -1,6 +1,6 @@
 import React from 'react';
-import videojs from 'video.js'
-import 'video.js/dist/video-js.css'
+import videojs from 'video.js';
+import 'video.js/dist/video-js.css';
 
 class VideoPlayer extends React.Component {
     componentDidMount() {
@@ -9,7 +9,7 @@ class VideoPlayer extends React.Component {
 
     componentWillUnmount() {
         if (this.player) {
-            this.player.dispose()
+            this.player.dispose();
         }
     }
 
@@ -17,10 +17,10 @@ class VideoPlayer extends React.Component {
         return (
             <div>
                 <div data-vjs-player>
-                    <video ref={node => this.videoNode = node} className="video-js"/>
+                    <video ref={(node) => this.videoNode = node} className="video-js" />
                 </div>
             </div>
-        )
+        );
     }
 }
 
