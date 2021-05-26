@@ -56,7 +56,7 @@ function Video({
 
         if (!checkedVideo.checked) {
             checkedVideo.checked = true;
-            select(videoInfo);
+            select({ ...videoInfo, thumbnail: defaultThumbnail });
         }
     }
 
