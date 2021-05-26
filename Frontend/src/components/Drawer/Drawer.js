@@ -113,7 +113,7 @@ const MiniDrawer = (props) => {
         </List>
         <Divider />
 
-        <ListItem button key={deleteText} onClick={() => handleClick('trash')}>
+        <ListItem button key={deleteText} onClick={() => handleClick('Trash')}>
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>

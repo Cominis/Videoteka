@@ -4,6 +4,7 @@ import '../Header/Header.scss';
 import { Toolbar, Button } from '@material-ui/core';
 import SearchBar from "material-ui-search-bar";
 import VideoUpload from '../Video/VideoUpload/VideoUpload';
+import VideoDelete from '../Video/VideoDelete';
 
 // Placeholder connectection to the backend
 const backendURL = "..."
@@ -43,7 +44,7 @@ function Header(props) {
 
                     <div className="HeaderButtons">
                        
-                        <VideoUpload/>
+                        {props.folderName === "Trash" ? <VideoDelete/> : <VideoUpload/>}
                         <Button id="HeaderButton" variant="contained" onClick={toggleDrawer}> Info </Button>
 
                     </div>
