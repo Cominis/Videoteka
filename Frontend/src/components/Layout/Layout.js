@@ -5,7 +5,7 @@ import Middle from '../Middle/Middle';
 import Drawer from '../Drawer/Drawer'
 import {Link, Route, Switch } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     Layout: {        
         display: 'flex',
         flexDirection: 'row',
@@ -68,9 +68,9 @@ function Layout() {
 
     const trashVideos = [
         {id: 1, title: 'Trash 1', thumbnail: 'src=???'},
-        {id: 2, title: 'Trash 1', thumbnail: 'src=???'},
-        {id: 3, title: 'Trash 1', thumbnail: 'src=???'},
-        {id: 4, title: 'Trash 1', thumbnail: 'src=???'},
+        {id: 2, title: 'Trash 2', thumbnail: 'src=???'},
+        {id: 3, title: 'Trash 3', thumbnail: 'src=???'},
+        {id: 4, title: 'Trash 4', thumbnail: 'src=???'},
     ]
     
 
@@ -107,7 +107,6 @@ function Layout() {
                     <Route path="/Trash">
                         <Header folderName = "Trash" setInfo = {setInfoOpen} info = {isInfoOpen} />
                         <Middle folderName = "Trash" folderVideos = {trashVideos} info = {isInfoOpen} />
-                        {/* Trash Bin Component*/ }
                     </Route>             
                 </Switch>               
             </div>
