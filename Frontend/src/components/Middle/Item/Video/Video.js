@@ -10,8 +10,8 @@ import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite'
 const useStyles = makeStyles({
     input: {
         display: 'none',
-        '&:checked ~ $container ': {
-            backgroundColor: '#ffcccb',
+        '&:checked ~ $container > $bottom': {
+            backgroundColor: '#e8f0fe',
         },
     },
     container: {
