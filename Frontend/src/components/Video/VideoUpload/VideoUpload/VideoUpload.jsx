@@ -5,8 +5,20 @@ import Button from '@material-ui/core/Button';
 import SnackbarContext from 'context/SnackbarContext';
 import { SEVERITY_ERROR, SEVERITY_INFO } from '../../../../constants';
 import PropTypes from 'prop-types';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+    HeaderButton: {
+        "& #HeaderButton": {
+            display: 'flex',
+            padding: '5px',
+            margin: '5px',
+        }
+    },
+}));
 
 function VideoUpload({ text }) {
+    const classes = useStyles();
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setSelected] = useState(false);
     const uploadFileInput = useRef()
@@ -35,20 +47,22 @@ function VideoUpload({ text }) {
             showMessageSnackbar(`Video uploaded successfully ID: ${res.createdVideoId}`);
         }
     };
-    
+
     const handleSubmitCancel = () => {
         clearSelection();
     }
-    
+
     const clearSelection = () => {
         setSelected(false);
         setSelectedFile('');
     }
-    
+
     return (
         <div>
-            <Button id='HeaderButton' variant='contained' onClick={handleUploadButtonClick}>{text}</Button>
-            <input type='file' name='file' onChange={changeHandler} ref={uploadFileInput} style={{ display:'none' }} />
+            <div className={classes.HeaderButton}>
+                <Button id='HeaderButton' variant='contained' onClick={handleUploadButtonClick}>{text}</Button>
+            </div>
+            <input type='file' name='file' onChange={changeHandler} ref={uploadFileInput} style={{ display: 'none' }} />
             {isSelected && (
                 <VideoUploadConfirmation
                     open={isSelected}

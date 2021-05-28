@@ -5,7 +5,7 @@ import Middle from '../Middle/Middle';
 import Drawer from '../Drawer/Drawer'
 import {Link, Route, Switch } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     Layout: {        
         display: 'flex',
         flexDirection: 'row',
@@ -56,6 +56,7 @@ function Layout() {
         {id: 2, title: 'Video C 2', thumbnail: 'src=???'},
         {id: 3, title: 'Video C 3', thumbnail: 'src=???'},                  
     ];
+
     const folderVideosD = [
         {id: 1, title: 'Video D 1', thumbnail: 'src=???'},
         {id: 2, title: 'Video D 2', thumbnail: 'src=???'},
@@ -64,6 +65,13 @@ function Layout() {
         {id: 5, title: 'Video D 5', thumbnail: 'src=???'},
         {id: 6, title: 'Video D 6', thumbnail: 'src=???'},                    
     ];
+
+    const trashVideos = [
+        {id: 1, title: 'Trash 1', thumbnail: 'src=???'},
+        {id: 2, title: 'Trash 2', thumbnail: 'src=???'},
+        {id: 3, title: 'Trash 3', thumbnail: 'src=???'},
+        {id: 4, title: 'Trash 4', thumbnail: 'src=???'},
+    ]
     
 
     return (
@@ -96,9 +104,9 @@ function Layout() {
                         <Header folderName = "d" setInfo = {setInfoOpen} info = {isInfoOpen} />                
                         <Middle folderName = "d" folderVideos ={folderVideosD}  info = {isInfoOpen} /> 
                     </Route>
-                    <Route path="/trash">
-                        <Header folderName = "trash" setInfo = {setInfoOpen} info = {isInfoOpen} />
-                        {/* Trash Bin Component*/ }
+                    <Route path="/Trash">
+                        <Header folderName = "Trash" setInfo = {setInfoOpen} info = {isInfoOpen} />
+                        <Middle folderName = "Trash" folderVideos = {trashVideos} info = {isInfoOpen} />
                     </Route>             
                 </Switch>               
             </div>

@@ -10,8 +10,8 @@ import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite'
 const useStyles = makeStyles({
     input: {
         display: 'none',
-        '&:checked ~ $container ': {
-            backgroundColor: '#ffcccb',
+        '&:checked ~ $container > $bottom': {
+            backgroundColor: '#e8f0fe',
         },
     },
     container: {
@@ -63,12 +63,13 @@ function Video({
     const handlePlay = () => {
         play(videoInfo);
     };
-
+  
     return (
         <>
-            <Card>
+            <Card>        
                 <input id={`video-${index}`} type="radio" name="video-radio" className={classes.input} />
                 <CardActionArea className={classes.container} onClick={toggleSelection}>
+                    {videoInfo.title.includes("Trash") ? <div>30 DAYS LEFT</div> : null}
                     <CardMedia
                         className={classes.top}
                         component="img"

@@ -1,54 +1,87 @@
 import React, { useState } from 'react';
-import '../Layout/Layout.scss';
-import '../Header/Header.scss';
 import { Toolbar, Button } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
 import SearchBar from "material-ui-search-bar";
 import VideoUpload from '../Video/VideoUpload/VideoUpload';
+import VideoDelete from '../Video/VideoDelete/VideoDelete';
 
-// Placeholder connectection to the backend
-const backendURL = "..."
+// // Placeholder connectection to the backend
+// const backendURL = "..."
 
+// Unimplemented Search function
 function doSomethingWith(searchTextObject) {
-    const urlToCall = backendURL + "/search/" + searchTextObject.searchText;
-    //Console log for debug purposes
-    console.log(urlToCall);
-    // TODO: Actually call the url
+    // const urlToCall = backendURL + "/search/" + searchTextObject.searchText;
+    // //Console log for debug purposes
+    // console.log(urlToCall);
 }
 
+const useStyles = makeStyles(() => ({
+    HeaderContent: {
+        marginLeft: '20px',
+        height: '120px',
+        borderBottom: '2px solid black',
+    },
+    SearchBar: {
+        marginTop: '20px',
+        width: '70%',
+    },
+    HeaderButtons: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'flex-end',
+    },
+    HeaderButton: {
+        "& #HeaderButton": {
+            display: 'flex',
+            padding: '5px',
+            margin: '5px',
+        }
+    },
+    FolderName: {
+        margin: '0px',
+    },
+    ToolbarAdjustment: {
+        "& #ToolbarAdjustment": {
+            marginTop: '15px',
+            minHeight: '50px',
+            padding: '0px 16px 0px 0px',
+        }
+    },
+}));
 
 function Header(props) {
-    // State accessor to change the name of the Title
-    // const [folderName, setFolderName] = useState("Folder");
-    // State accessor to get search bar text
-    const [searchText, setSearchText] = useState("");
+    const classes = useStyles();
 
-    function toggleDrawer(){
+    function toggleDrawer() {
         props.setInfo(!props.info);
     }
 
     return (
-        <div className="Layout__Header" >
-            <div className="HeaderContent">
-                
+        <div>
+            <div className={classes.HeaderContent}>
+
                 <div>
-                    <SearchBar className="SearchBar"
+                    <SearchBar className={classes.SearchBar}
                         onChange={(newValue) => setSearchText({ searchText: newValue })}
                         onRequestSearch={() => doSomethingWith(searchText)}
                     />
                 </div>
-                
-                <Toolbar id="ToolbarAdjustment">
 
-                    <h1 className="FolderName"> {props.folderName} </h1>
+                <div className={classes.ToolbarAdjustment}>
+                    <Toolbar id="ToolbarAdjustment">
 
-                    <div className="HeaderButtons">
-                       
-                        <VideoUpload/>
-                        <Button id="HeaderButton" variant="contained" onClick={toggleDrawer}> Info </Button>
+                        <h1 className={classes.FolderName}> {props.folderName} </h1>
 
-                    </div>
-                </Toolbar>
-                
+                        <div className={classes.HeaderButtons}>
+                            {props.folderName === "Trash" ? <VideoDelete /> : <VideoUpload />}
+
+                            <div className={classes.HeaderButton}>
+                                <Button id="HeaderButton" variant="contained" onClick={toggleDrawer}> Info </Button>
+                            </div>
+                        </div>
+                    </Toolbar>
+                </div>
+
             </div>
         </div>
     )
