@@ -59,10 +59,12 @@ function Middle({ folderName, folderVideos, info }) {
     const [playVideo, setPlayVideo] = useState(false);
 
     useEffect(() => {
+        
+        removeSelected();
+
         // temp show default video for other folders
         if (folderName !== 'a') {
-            removeSelected();
-
+            
             const videos = folderVideos.map((values) => ({
                 ...values,
                 src: 'http://localhost:3000/videoteka-video.mp4',
@@ -77,7 +79,7 @@ function Middle({ folderName, folderVideos, info }) {
                 setVideoList(videos.userVideos);
             })();
         }
-    }, [folderVideos, folderName]);
+    }, [folderName]);
 
     const videoPlayerOptions = (src, type) => ({
         autoplay: true,
