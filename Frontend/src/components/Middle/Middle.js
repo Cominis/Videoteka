@@ -74,9 +74,9 @@ function Middle({ folderName, folderVideos, info }) {
       setVideoList(videos);
     } else {
       (async () => {
-        const videos = await getUserVideos(1);
-        if (videos) {
-          setVideoList(videos.userVideos);
+        const response = await getUserVideos(1);
+        if (!!response.userVideos) {
+          setVideoList(response.userVideos);
         } else {
           setVideoList([]);
         }
