@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,20 +17,20 @@ import { useHistory } from "react-router-dom";
 
 const drawerWidth = 370;
 
-const useStyles = makeStyles((theme) => ({ 
-  drawer: {    
+const useStyles = makeStyles((theme) => ({
+  drawer: {
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap",
   },
-  drawerOpen: {    
+  drawerOpen: {
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  drawerClose: {     
+  drawerClose: {
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-  },  
+  },
 }));
 
 const MiniDrawer = (props) => {
@@ -59,12 +59,11 @@ const MiniDrawer = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true);    
+    setOpen(true);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
-   
   };
 
   let history = useHistory();
@@ -73,11 +72,10 @@ const MiniDrawer = (props) => {
     history.push("/" + route);
   };
   const deleteText = "Recently deleted files";
-  
 
   return (
     <div>
-      <CssBaseline />      
+      <CssBaseline />
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -91,13 +89,16 @@ const MiniDrawer = (props) => {
           }),
         }}
       >
-        <div className={classes.toolbar}>  
-
-          {
-            open 
-            ? <IconButton onClick={handleDrawerClose}> <ChevronLeftIcon/> </IconButton>              
-            : <IconButton onClick={handleDrawerOpen}> <ChevronRightIcon/> </IconButton>       
-          }         
+        <div className={classes.toolbar}>
+          {open ? (
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          ) : (
+            <IconButton onClick={handleDrawerOpen}>
+              <ChevronRightIcon />
+            </IconButton>
+          )}
         </div>
         <Divider />
 
@@ -105,7 +106,7 @@ const MiniDrawer = (props) => {
           {props.folders.map((text) => (
             <ListItem button key={text} onClick={() => handleClick(text)}>
               <ListItemIcon>
-                <FolderIcon /> 
+                <FolderIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -113,13 +114,13 @@ const MiniDrawer = (props) => {
         </List>
         <Divider />
 
-        <ListItem button key={deleteText} onClick={() => handleClick('trash')}>
+        <ListItem button key={deleteText} onClick={() => handleClick("trash")}>
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
           <ListItemText primary={deleteText} />
         </ListItem>
-      </Drawer> 
+      </Drawer>
     </div>
   );
 };
