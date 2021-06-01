@@ -5,16 +5,6 @@ import SearchBar from "material-ui-search-bar";
 import VideoUpload from "../Video/VideoUpload/VideoUpload";
 import VideoDelete from "../Video/VideoDelete/VideoDelete";
 
-// // Placeholder connectection to the backend
-// const backendURL = "..."
-
-// Unimplemented Search function
-function doSomethingWith(searchTextObject) {
-  // const urlToCall = backendURL + "/search/" + searchTextObject.searchText;
-  // //Console log for debug purposes
-  // console.log(urlToCall);
-}
-
 const useStyles = makeStyles(() => ({
   HeaderContent: {
     marginLeft: "20px",
@@ -39,6 +29,8 @@ const useStyles = makeStyles(() => ({
   },
   FolderName: {
     margin: "0px",
+    whiteSpace: "nowrap",
+
   },
   ToolbarAdjustment: {
     "& #ToolbarAdjustment": {
@@ -60,11 +52,7 @@ function Header(props) {
     <div>
       <div className={classes.HeaderContent}>
         <div>
-          <SearchBar
-            className={classes.SearchBar}
-            onChange={(newValue) => setSearchText({ searchText: newValue })}
-            onRequestSearch={() => doSomethingWith(searchText)}
-          />
+          <SearchBar className={classes.SearchBar} />
         </div>
 
         <div className={classes.ToolbarAdjustment}>
