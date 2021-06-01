@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
-import { getUserVideos } from "clients/videoClient";
+import { getUserVideos, getTrashUserVideos } from "clients/videoClient";
 import getVideoSource from "services/getVideoSource";
 import PropTypes from "prop-types";
 import Video from "./Item/Video/Video";
@@ -62,7 +62,16 @@ function Middle({ folderName, folderVideos, info }) {
   const [playVideo, setPlayVideo] = useState(false);
 
   useEffect(() => {
-    if (folderName !== "Autumn 2020") {
+    if (folderName === 'Trash') {
+      (async () => {
+        const response = await getTrashUserVideos(1);
+        if (!!response.userVideos) {
+          setVideoList(response.userVideos);
+        } else {
+          setVideoList([]);
+        }
+      })();
+    } else if (folderName !== 'Autumn 2020') {
       removeSelected();
 
       const videos = folderVideos.map((values) => ({
@@ -113,6 +122,12 @@ function Middle({ folderName, folderVideos, info }) {
       contentType: null,
     });
   }
+  
+  const onRemoveVideo = (id) => {
+    const videos = videoList.filter(v => v.id !== id);
+
+    setVideoList(videos);
+  };
 
   const getPlayerOptions = (video) => {
     if (video?.src) {
@@ -149,7 +164,7 @@ function Middle({ folderName, folderVideos, info }) {
 
   return (
     <div id="middle" className={classes.middle}>
-      <VideoDragAndDrop InfoOpen={info} showEmptyState={videoList.length === 0}>
+      <VideoDragAndDrop InfoOpen={info} showEmptyState={videoList.length === 0 && folderName !== 'Trash'}>
         {videoList.length !== 0 && (
           <div className={classes.whiteSpace} onClick={removeSelected} />
         )}
@@ -170,7 +185,7 @@ function Middle({ folderName, folderVideos, info }) {
           ))}
         </Grid>
       </VideoDragAndDrop>
-      <InformationPanel open={info} selected={selectedVideo} />
+      <InformationPanel open={info} selected={selectedVideo} onRemoveVideo={onRemoveVideo} />
       <VideoContainer
         playerOptions={playerOpt}
         open={playVideo}

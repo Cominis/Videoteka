@@ -58,6 +58,7 @@ function InformationPanel(props) {
     event.stopPropagation();
     if (selectedVideo?.id) {
       moveToTrash(selectedVideo.id);
+      props.onRemoveVideo(selectedVideo.id);
     }
   };
   const handleDelete = (event) => {
@@ -65,6 +66,7 @@ function InformationPanel(props) {
     event.stopPropagation();
     if (selectedVideo?.id) {
       deleteVideo(selectedVideo.id);
+      props.onRemoveVideo(selectedVideo.id);
     }
   };
   let destructiveButton = null;
