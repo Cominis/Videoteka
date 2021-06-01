@@ -62,7 +62,7 @@ function Middle({ folderName, folderVideos, info }) {
   const [playVideo, setPlayVideo] = useState(false);
 
   useEffect(() => {
-    if (folderName !== "a") {
+    if (folderName !== "Autumn 2020") {
       removeSelected();
 
       const videos = folderVideos.map((values) => ({

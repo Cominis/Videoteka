@@ -74,44 +74,44 @@ function Layout() {
   return (
     <div className={classes.Layout}>
       <div className={classes.Layout__Sidebar}>
-        <Drawer folders={["a", "b", "c", "d"]}>
-          <Link to="/a" />
-          <Link to="/b" />
-          <Link to="/c" />
-          <Link to="/d" />
+        <Drawer folders={["Autumn 2020", "BBQ Party", "Christmas 2020", "Duck Vids"]}>
+          <Link to="/Autumn 2020" />
+          <Link to="/Folder 2" />
+          <Link to="/Folder 3" />
+          <Link to="/Folder 4" />
         </Drawer>
       </div>
 
       <div className={classes.Layout__Content}>
         <Switch>
-          <Route path="/a">
-            <Header folderName="a" setInfo={setInfoOpen} info={isInfoOpen} />
+          <Route path="/Autumn 2020">
+            <Header folderName="Autumn 2020" setInfo={setInfoOpen} info={isInfoOpen} />
             <Middle
-              folderName="a"
+              folderName="Autumn 2020"
               folderVideos={folderVideosA}
               info={isInfoOpen}
             />
           </Route>
-          <Route path="/b">
-            <Header folderName="b" setInfo={setInfoOpen} info={isInfoOpen} />
+          <Route path="/BBQ Party">
+            <Header folderName="BBQ Party" setInfo={setInfoOpen} info={isInfoOpen} />
             <Middle
-              folderName="b"
+              folderName="BBQ Party"
               folderVideos={folderVideosB}
               info={isInfoOpen}
             />
           </Route>
-          <Route path="/c">
-            <Header folderName="c" setInfo={setInfoOpen} info={isInfoOpen} />
+          <Route path="/Christmas 2020">
+            <Header folderName="Christmas 2020" setInfo={setInfoOpen} info={isInfoOpen} />
             <Middle
-              folderName="c"
+              folderName="Christmas 2020"
               folderVideos={folderVideosC}
               info={isInfoOpen}
             />
           </Route>
-          <Route path="/d">
-            <Header folderName="d" setInfo={setInfoOpen} info={isInfoOpen} />
+          <Route path="/Duck Vids">
+            <Header folderName="Duck Vids" setInfo={setInfoOpen} info={isInfoOpen} />
             <Middle
-              folderName="d"
+              folderName="Duck Vids"
               folderVideos={folderVideosD}
               info={isInfoOpen}
             />
