@@ -180,6 +180,7 @@ function Middle({ folderName, folderVideos, info }) {
                 videoInfo={video}
                 select={setSelectedVideo}
                 play={handlePlayVideo}
+                markedTrash={folderName === 'Trash'}
               />
             </Grid>
           ))}

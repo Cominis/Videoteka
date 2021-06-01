@@ -48,6 +48,7 @@ function Video({
     index,
     play,
     select,
+    markedTrash,
 }) {
     const classes = useStyles();
 
@@ -63,13 +64,13 @@ function Video({
     const handlePlay = () => {
         play(videoInfo);
     };
-  
+
     return (
         <>
             <Card>        
                 <input id={`video-${index}`} type="radio" name="video-radio" className={classes.input} />
                 <CardActionArea className={classes.container} onClick={toggleSelection}>
-                    {videoInfo.title.includes("Trash") ? <div>30 DAYS LEFT</div> : null}
+                    {markedTrash && <div>30 DAYS LEFT</div>}
                     <CardMedia
                         className={classes.top}
                         component="img"
@@ -103,6 +104,7 @@ Video.propTypes = {
     play: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     select: PropTypes.func.isRequired,
+    markedTrash: PropTypes.bool.isRequired,
 };
 
 export default Video;
