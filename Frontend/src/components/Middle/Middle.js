@@ -125,7 +125,7 @@ function Middle({ folderName, folderVideos, info }) {
   
   const onRemoveVideo = (id) => {
     const videos = videoList.filter(v => v.id !== id);
-
+    removeSelected();
     setVideoList(videos);
   };
 
